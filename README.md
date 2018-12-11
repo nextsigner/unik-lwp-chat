@@ -1,5 +1,7 @@
 # unik-lwp-chat
 
+![alt text](https://github.com/nextsigner/unik-lwp-chat/blob/master/sreenshot.png?raw=true "Screenshot")
+
 Aolicaciòn de Escritorio para estar conectado entre otras a la sala de chat de La Web del Programador. 
 
 El còdigo fuente de èste repositorio, contiene los archivos QML necesarios para el mismo sea ejecutado como una aplicaciòn anidada dentro de Unik Qml Engine creado por @nextsigner.
