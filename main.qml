@@ -10,6 +10,7 @@ ApplicationWindow{
     WebEngineView{
         id: wv
         anchors.fill: parent
+        zoomFactor: 1.65
         url: 'https://www.lawebdelprogramador.com/chat/QT/'
     }
     Rectangle{
@@ -45,48 +46,14 @@ ApplicationWindow{
             setColor('p')
             setColor('span')
             setColor('textarea')
-
-            //setFS('a')
-            setFS('input')
-            setFS('h4')
-            setFS('textarea')
-            setFS('span')
-            setFS('p')
-            setFS('div')
-            setFS('section')
-
             bot1. visible=(''+wv.url).indexOf('https://www.lawebdelprogramador.com/chat/QT/')<0
-
         }
-
-    }
-
-    Component.onCompleted: {
-
     }
     function setColor(t){
         wv.runJavaScript('document.getElementsByTagName(\''+t+'\').length', function(result) {
             var js='function setColor(d){d.style.backgroundColor="#333333";d.style.color="#fff";};'
             for(var i=0;i<result;i++){
                 js += 'setColor(document.getElementsByTagName(\''+t+'\')['+i+']);'
-            }
-            wv.runJavaScript(js, function(result2) {
-                //console.log("Result Styles Divs: "+result2)
-            })
-        })
-    }
-    function setFS(t){
-        wv.runJavaScript('document.getElementsByTagName(\''+t+'\').length', function(result) {
-            //var js='function setFS(d){d.style.fontSize = "30px";};'
-            var js='function setFS(d){'
-            js+='   if(d.className!==\'chat_header\'){'
-            js+='       d.style.fontSize = "30px"; d.style.lineHeight = "30px"; '
-            js+='   }else{'
-            js+='       d.style.fontSize = "30px";d.style.height = "'+parseInt(30+(30/2))+'px";d.style.marginTop = "'+parseInt(30*2)+'px";'
-            js+='   }'
-            js+='}'
-            for(var i=0;i<result;i++){
-                js += 'setFS(document.getElementsByTagName(\''+t+'\')['+i+']);'
             }
             wv.runJavaScript(js, function(result2) {
                 //console.log("Result Styles Divs: "+result2)
