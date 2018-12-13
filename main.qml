@@ -46,6 +46,7 @@ ApplicationWindow{
             setColor('p')
             setColor('span')
             setColor('textarea')
+            setColor('a')
             bot1. visible=(''+wv.url).indexOf('https://www.lawebdelprogramador.com/chat/QT/')<0
         }
     }
