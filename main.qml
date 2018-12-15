@@ -9,7 +9,7 @@ ApplicationWindow{
     title: 'unik-lwp-chat https://www.lawebdelprogramador.com/chat/'+app.arrayUrls[appSettings.area]+'/'
     property int fs: width*0.015
     property real zoomFactor
-    property var arrayUrls: ['QT', 'JavaScript', 'Linux']//Salas de Interes
+    property var arrayUrls: ['Manual', 'QT', 'JavaScript', 'Linux']//Salas de Interes
     Item{
         id: xApp
         width: app.width
@@ -57,7 +57,8 @@ ApplicationWindow{
         }
         for(var i=0;i<app.arrayUrls.length;i++){
             var comp=Qt.createComponent('ItemWeb.qml')
-            var obj=comp.createObject(xApp, {"url":"https://www.lawebdelprogramador.com/chat/"+app.arrayUrls[i]+"/", "area":i})
+            var url=i===0?'https://github.com/nextsigner/unik-lwp-chat/blob/master/README.md':"https://www.lawebdelprogramador.com/chat/"+app.arrayUrls[i]+"/"
+            var obj=comp.createObject(xApp, {"url":url, "area":i})
         }
     }
 }

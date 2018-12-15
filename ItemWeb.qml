@@ -9,7 +9,7 @@ WebEngineView{
     visible: area===appSettings.area
     Timer{
         id: ts
-        running: true
+        running: wv.area!==0
         repeat: true
         interval: 250
         onTriggered: {
