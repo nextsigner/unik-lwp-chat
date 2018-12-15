@@ -21,6 +21,8 @@ WebEngineView{
             setColor('span')
             setColor('textarea')
             setColor('a')
+            setColor('pre')
+            setColor('code')
             //bot1. visible=(''+wv.url).indexOf('https://www.lawebdelprogramador.com/chat/QT/')<0
         }
     }
