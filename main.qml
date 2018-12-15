@@ -1,64 +1,63 @@
-import QtQuick 2.0
+import QtQuick 2.9
 import QtQuick.Controls 2.0
 import QtWebEngine 1.2
+import Qt.labs.settings 1.0
 ApplicationWindow{
     id:app
     visible: true
     visibility: 'Maximized'
+    title: 'unik-lwp-chat https://www.lawebdelprogramador.com/chat/'+app.arrayUrls[appSettings.area]+'/'
     property int fs: width*0.015
-    property string blackCode
-    WebEngineView{
-        id: wv
-        anchors.fill: parent
-        zoomFactor: 1.65
-        url: 'https://www.lawebdelprogramador.com/chat/QT/'
+    property real zoomFactor
+    property var arrayUrls: ['QT', 'JavaScript', 'Linux']//Salas de Interes
+    Item{
+        id: xApp
+        width: app.width
+        height: app.height
     }
-    Rectangle{
-        id: bot1
-        width: txtB1.contentWidth+app.fs*2
-        height: app.fs*1.4
-        color: 'black'
-        radius: app.fs*0.2
-        border.width: 3
-        border.color: 'white'
-        Text {
-            id: txtB1
-            text: 'Ir al Chat sobre Qt/C++/Qml/JavaScript'
-            font.pixelSize: app.fs
-            color: 'white'
-            anchors.centerIn: parent
-        }
-        MouseArea{
-            anchors.fill: parent
-            onClicked: wv.url='https://www.lawebdelprogramador.com/chat/QT/'
-        }
+    Settings{
+        id: appSettings
+        property int area
     }
-    Timer{
-        id: ts
-        running: true
-        repeat: true
-        interval: 250
-        onTriggered: {
-            setColor('div')
-            setColor('body')
-            setColor('section')
-            setColor('input')
-            setColor('p')
-            setColor('span')
-            setColor('textarea')
-            setColor('a')
-            bot1. visible=(''+wv.url).indexOf('https://www.lawebdelprogramador.com/chat/QT/')<0
-        }
-    }
-    function setColor(t){
-        wv.runJavaScript('document.getElementsByTagName(\''+t+'\').length', function(result) {
-            var js='function setColor(d){d.style.backgroundColor="#333333";d.style.color="#fff";};'
-            for(var i=0;i<result;i++){
-                js += 'setColor(document.getElementsByTagName(\''+t+'\')['+i+']);'
+    Shortcut{
+        sequence: 'Ctrl++'
+        onActivated: {
+            if(app.zoomFactor<2.0){
+                app.zoomFactor+=0.1
             }
-            wv.runJavaScript(js, function(result2) {
-                //console.log("Result Styles Divs: "+result2)
-            })
-        })
+        }
+    }
+    Shortcut{
+        sequence: 'Ctrl+-'
+        onActivated: {
+            if(app.zoomFactor>0.1){
+                app.zoomFactor-=0.1
+            }
+        }
+    }
+    Shortcut{
+        sequence: 'Ctrl+Right'
+        onActivated: {
+            if(appSettings.area<xApp.children.length){
+                appSettings.area++
+            }
+        }
+    }
+    Shortcut{
+        sequence: 'Ctrl+Left'
+        onActivated: {
+            if(appSettings.area>0){
+                appSettings.area--
+            }
+        }
+    }
+    Component.onCompleted: {
+        if(appSettings.area<0){
+            appSettings.area=0
+        }
+        for(var i=0;i<app.arrayUrls.length;i++){
+            var comp=Qt.createComponent('ItemWeb.qml')
+            var obj=comp.createObject(xApp, {"url":"https://www.lawebdelprogramador.com/chat/"+app.arrayUrls[i]+"/", "area":i})
+        }
     }
 }
