@@ -38,7 +38,7 @@ ApplicationWindow{
     Shortcut{
         sequence: 'Ctrl+Right'
         onActivated: {
-            if(appSettings.area<xApp.children.length){
+            if(appSettings.area<xApp.children.length-1){
                 appSettings.area++
             }
         }
