@@ -5,6 +5,7 @@
 * Para Agregar y Quitar Salas de Chat hay que editar el la propiedad arrayUrls del archivo main.qml
 * Para ver las diferentes salas de chat presionar Ctrl+Derecha o Ctrl+Izquierda
 * Para cambiar el tamaño del zoom de la pàgina web, presionar Ctrl++ o Ctrl+-
+* Para cerrar aplicaciòn desde el teclado Ctrl+Esc
 
 ![alt text](https://github.com/nextsigner/unik-lwp-chat/blob/master/sreenshot.png?raw=true "Screenshot")
 

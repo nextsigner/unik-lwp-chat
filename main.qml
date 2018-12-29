@@ -51,6 +51,12 @@ ApplicationWindow{
             }
         }
     }
+    Shortcut{
+        sequence: 'Ctrl+Esc'
+        onActivated: {           
+                Qt.quit()           
+        }
+    }
     Component.onCompleted: {
         if(appSettings.area<0){
             appSettings.area=0
